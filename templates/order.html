@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order Success</title>
+    <style>
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Fullscreen overlay */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        /* Popup box styling */
+        .popup-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.7s ease forwards;
+        }
+
+        .popup-icon {
+            font-size: 50px;
+            color: green;
+            margin-bottom: 10px;
+        }
+
+        .popup-box h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .popup-box p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .popup-box a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .popup-box a:hover {
+            background: #218838;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                visibility: hidden;
+            }
+            to {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Show popup immediately when page loads */
+        body:has(.popup-overlay) {
+            overflow: hidden; /* Optional to prevent page scrolling */
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Popup container (shown automatically when page loads) -->
+<div class="popup-overlay">
+    <div class="popup-box">
+        <div class="popup-icon">✅</div>
+        <h2>Order Placed Successfully!</h2>
+        <p>Your order has been received. Thank you for shopping with us!</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">
+            Back To Home
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

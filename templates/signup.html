@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> signup Form</title>
+
+    <style>
+ html,body{
+            font-family:cursive;
+            background-color:white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+
+            /* color:black; */
+        }
+        form{
+            border:2px solid rgb(255, 153, 0);;
+            padding:20px;
+            box-shadow: 3px 4px 10px rgb(255, 153, 0);
+            border-radius: 10px;
+            
+        }
+        input{
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+
+        }
+        button{
+            width:110px;
+            height: 40px;
+            position: relative;
+            left: 109px;
+            border-radius: 5px;
+            /* margin-left: 70px; */
+            background-color: rgb(255, 153, 0);
+            border-color: rgb(255, 153, 0);
+            font-family:cursive;
+            margin: auto;
+        }
+        button:hover{
+            background-color: black;
+            color:white;
+            border-color:black;
+        }
+        h2{
+            margin-left: 90px;
+
+        }
+        .radio{
+            width:100px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <h2>Signup Form</h2>
+        <label for="name">Email</label><br>
+        <input type="email" placeholder="User Name"  name="email"> <br><br>
+        <label for="password">Password</label><br>
+        <input type="password" placeholder="Enter Password" name="password"><br><br>
+        <label for="role">Role</label><br><br>
+        <label>Buyer</label>
+        <input type="radio" class="radio" placeholder="Enter role" name="role" value="Buyer" style="accent-color: #ff6f00"><br><br/>
+        <label>Seller</label>
+        <input type="radio" class="radio" placeholder="Enter role" name="role" value="Seller" style="accent-color: #ff6f00"><br/><br/>
+        <button type="submit">Login</button><br><br>
+
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,222 @@
+{% load static %}
+{% include 'navbar.html'%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Restaurant-Website</title>
+    <meta name="viewport" content="width=device-width,inicial-scal=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    
+    <!-- home -->
+    <section id="home">
+        <div class="home-text">
+            <h2>Get Fresh <span>Food</span><br>in Easy Way</h2>
+            <p>Fresh food is full of vitamins and minerals, including vitamins A, C, and E, and magnesium.Eating a wide
+                variety of nutritious foods, including fruit, vegetables, nuts, seeds, and lean protein can help support
+                your overall health.</p>
+            <div class="home-btn">
+                <a href="#order">Order Now</a>
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+        </div>
+        </div>
+        <div class="home-img">
+            <img src="{% static 'images/pizza.jpeg'%}" alt="">
+        </div>
+    </section>
+    <!-- home section end -->
+
+   
+
+   
+
+    <!-- gallary section -->
+
+    <section id="gallary">
+        <div class="gallary-page">
+            <h1>Our <span>Gallery</span></h1>
+            <div class="gal-box">
+                <div class="images">
+                    <img src="{% static 'images/coffee.jpeg'%}"
+                        alt="">
+                    <h3>cofee</h3>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, quod?</p> -->
+                    <a href="#" class="gal-btn">Order Now</a>
+                </div>
+                <div class="images">
+                    <img src="{% static 'images/cheesepizza.jpeg'%}" alt="">
+                    <h3>Cheese Pizza</h3>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, quod?</p> -->
+                    <a href="#" class="gal-btn">Order Now</a>
+                </div>
+                <div class="images">
+                    <img src="{% static 'images/cake.jpeg'%}" alt="">
+                    <h3>Cake</h3>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, quod?</p> -->
+                    <a href="#" class="gal-btn">Order Now</a>
+                </div>
+                <div class="images">
+                    <img src="{% static 'images/pasta.jpeg'%}" alt="">
+                    <h3>Pasta</h3>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, quod?</p> -->
+                    <a href="#" class="gal-btn">Order Now</a>
+                </div>
+                <div class="images">
+                    <img src="{% static 'images/iceCream.jpeg'%}" alt="">
+                    <h3>Ice Cream</h3>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, quod?</p> -->
+                    <a href="#" class="gal-btn">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order -->
+    <section id="order">
+        <h1><span>Order&nbsp;</span>Now </h1>
+        <div class="order-page">
+            <div class="order-img">
+                <img src="{% static 'images/order.jpeg' %}" alt="">
+            </div>
+            <form>
+                <div class="align">
+                    <div>
+                        <label>Name</label><br>
+                        <input type="text" placeholder="Enter Your Name"><br>
+                    </div>
+                    <div>
+                        <label>Email</label><br>
+                        <input type="email" placeholder="Enter Your Email"><br>
+                    </div>
+                </div>
+                <div class="align">
+                    <div>
+                        <label>Contact.no</label><br>
+                        <input type="text" placeholder="Phone No"><br>
+                    </div>
+                    <div>
+                        <label>Orders</label><br>
+                        <input type="text" placeholder="How many Orders"><br>
+                    </div>
+                </div>
+                <div class="align">
+                    <div>
+                        <label>Your Order</label><br>
+                        <input type="text" placeholder="Food Name"><br>
+                    </div>
+                    <div>
+                        <label>Adderss</label><br>
+                        <input type="text" placeholder="Enter Your Adderss"><br>
+                        <div class="order-btn">
+                            <a href="#">Order Now</a>
+                            <i class="fa-solid fa-angle-right"></i>
+                        </div>
+                    </div>
+
+            </form>
+
+
+        </div>
+
+
+    </section>
+
+    <div class="team">
+        <h1>Our <span>Team</span></h1>
+        <div class="team-page">
+            <div class="chef-card">
+                <img src="{% static 'images/chef1.jpeg'%}" alt="">
+                <div class="team-text">
+                    <h2>Garima Arora</h2>
+                    <p>Master Chef</p>
+                    <div class="team-icons">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                    </div>
+                </div>
+
+            </div>
+            <div class="chef-card">
+                <img src="{% static 'images/chef2.jpeg'%}"
+                    alt="">
+                <div class="team-text">
+                    <h2>Sanjeev Kapor</h2>
+                    <p>Executive Chef</p>
+                    <div class="team-icons">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                    </div>
+                </div>
+
+            </div>
+            <div class="chef-card">
+                <img src="{% static 'images/chef3.jpeg'%}"
+                    alt="">
+                <div class="team-text">
+                    <h2>Tarla Dala</h2>
+                    <p>Trainees Chef</p>
+                    <div class="team-icons">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="main">
+            <div class="text">
+                <h2>Location</h2>
+                <p>Chennai</p>
+                <p>Madhurai</p>
+                <p>Theni</p>
+                <P>Chidhambaram</P>
+            </div>
+            <div class="text">
+                <h2>Quick Link</h2>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#gallary">Gallery</a></li>
+                    <li><a href="#order">Order</a></li>
+                </ul>
+            </div>
+            <div class="text">
+                <h2>Contact</h2>
+                <p>+91 6383417605</p>
+                <p>+91 8098419816</p>
+                <p>renubhuvana14@gmail.com</p>
+                <P>tkalai678@gamail.com</P>
+            </div>
+            <div class="text">
+                <h2>Our Service</h2>
+                <p>Fast Delivery</p>
+                <p>Easy payments</p>
+                <p>24x7 service</p>
+                <P>Chidhambaram</P>
+            </div>
+            <div class="text">
+                <h2>Followers</h2>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+
+            </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+/* about */
+#about{
+    width:100%;
+    height:fit-content;
+    padding: 50px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.about-page{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.about-img img{
+    width:500px;
+    position: relative;
+    left: 50px;
+    mix-blend-mode: multiply;
+
+}
+.about-text{
+    padding:100px;
+}
+#about .about-text h2 span{
+    
+    color:orange;
+    margin-right: 15px;
+    font-family: mv boli;
+}
+#about .about-text p{
+    width:600px;
+    text-align: justify;
+    margin-right: 36px;
+    line-height: 27px;
+    padding-top: 20px ;
+}
+.about-btn{
+    background-color: orange;
+    position: relative;
+    
+    bottom: 5px;
+    width:150px;
+    padding: 12px 25px; 
+    margin-top: 20px;  
+    border-radius: 8px; 
+}
+.about-btn a{
+    color:white;
+    margin-right: 5px;
+    text-decoration: none;
+}
+.about-btn i{
+    color:white;
+    transition: 0.3s;
+}
+.about-btn:hover i{
+    transform: translate(7px);
+}

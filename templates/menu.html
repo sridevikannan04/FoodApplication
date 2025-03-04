@@ -1,0 +1,50 @@
+{% load static %}
+{% include 'navbar.html'%}
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}" />
+ </head>
+ <body>
+    <!-- Menu section start -->
+ <section id="menu">
+    <div class="menu-page">
+        <h1>Our<span>Menu</span></h1>
+        <div class="card-align">
+            {% for i in items %}
+                <div class="menu-box">
+                    <div class="menu-card">
+                        <div class="menu-img">
+                           <img src="{{ i.image.url }}" alt="{{ i.name }}" "/>
+                        </div>
+                        <div class="fav-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <div class="menu-text">
+                            <h2>{{ i.name }}</h2>
+                            <p>{{ i.description }}</p>
+                            <h3>${{ i.price }}</h3>
+                        </div>
+                    <div class="menu-icons">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                        <form action="{% url 'addToCart' i.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Add To Cart</button>
+                        </form>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</section>
+ </body>
+ </html> 
+ 
+ 

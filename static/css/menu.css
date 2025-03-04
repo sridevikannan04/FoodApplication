@@ -1,0 +1,98 @@
+
+.menu-page h1{
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-page h1 span{
+    color:orange;    
+    font-family: mv boli;
+}
+#menu .menu-box{
+    width: 100%; 
+    height:350px;   
+    display: flex;
+    justify-content: space-around;
+}
+.menu-card{
+    width:300px;
+    height:410px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 5px black;
+}
+.menu-img{
+    width: 250px;
+    height: 200px;
+    margin:0 auto;
+    overflow: hidden;
+}
+.menu-img img{
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s;
+}
+.menu-img:hover img{
+    transform: scale(1.1);
+}
+.card-align{
+    display: flex;
+    padding: 40px;
+}
+.menu-text{
+    text-align: center;
+}
+.menu-text h2{
+    padding-top: 3px;
+    color: orange;
+}
+.menu-text p{
+    font-size: 14px;
+    padding: 5px;    
+}
+.menu-icons{
+    text-align: center;
+    color:orange;
+}
+.fav-icon i{
+    margin-left: 130px;
+    position:absolute;
+    font-size: 40px;
+
+        transform: scale(0);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+
+    
+    
+}
+.fav-icon:hover i{
+        transform: scale(1);
+        opacity: 1;
+        color: crimson;
+
+    
+}
+.menu-click{
+    padding:10px;
+}
+form button{
+    width:100px;
+    height:30px;
+    padding: 2px;
+    margin-top: 5px;
+    margin-left: 100px;
+    border-radius: 4px;
+    border: 1px solid orange;
+    background-color: orange;
+    color: black;
+    text-decoration: none;   
+}
+button .btn:hover {
+    background: darkorange;
+    color: white;
+    transition: 0.3s ease-in-out;
+}
