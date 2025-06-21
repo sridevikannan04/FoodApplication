@@ -1,10 +1,11 @@
-
-.menu-page h1{
+.menu-page h1 {
     font-size: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px 0;
 }
+
 .menu-page h1 span{
     color:orange;    
     font-family: mv boli;
@@ -15,14 +16,32 @@
     display: flex;
     justify-content: space-around;
 }
-.menu-card{
+/* .menu-card{
     width:300px;
-    height:410px;
+    min-height:400px;
     padding-top: 20px;
     margin-bottom: 20px;
     border-radius: 6px;
     box-shadow: 0 0 5px black;
+} */
+.card-align {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 100px;
+    padding: 40px;
 }
+
+.menu-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    height: 100%; /* ensures equal height inside grid */
+}
+
 .menu-img{
     width: 250px;
     height: 200px;
@@ -39,10 +58,14 @@
 .menu-img:hover img{
     transform: scale(1.1);
 }
-.card-align{
-    display: flex;
+/* .card-align {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     padding: 40px;
-}
+} */
+
+
 .menu-text{
     text-align: center;
 }

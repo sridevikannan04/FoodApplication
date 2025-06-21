@@ -2,7 +2,7 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    position: absolute;
+    position: fixed;
     height: 60px;
     top:0%;
     right: 0%;
@@ -24,19 +24,36 @@ nav ul li{
     display: inline-block;
     margin: 0 20px;
 }
-nav a{
+nav .navbar a{
     text-decoration: none;
     color:orange;
     font-weight: 500;
     font-size: 17px;
     transition: 1s ease;
 }
-nav a:hover{
+nav .navbar a:hover{
    color: black; 
 }
-nav i{
+/* nav i{
     margin-right: 5px;
 }
 nav i:hover{
     color:orange;
+} */
+nav .icons a{
+    width:100px;
+    height:30px;
+    padding: 8px;
+    margin-top: 5px;
+    margin-left: 100px;
+    border-radius: 4px;
+    border: 1px solid orange;
+    background-color: orange;
+    color: black;
+    text-decoration: none;   
+}
+nav .icons a:hover {
+    background: darkorange;
+    color: white;
+    transition: 0.3s ease-in-out;
 }

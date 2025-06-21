@@ -17,16 +17,20 @@
                 <li><a href="/home">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/menu">Menu</a></li>
+                {% if user.is_authenticated %}
                 <li><a href="/cart">Cart</a></li>
-                <!-- <li><a href="/orderSuccess">Order</a></li> -->
+                {% endif %}
             </ul>
         </div>
         <div class="icons">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-solid fa-heart">
-                <a href="#gallary"></a>
-            </i>
-            <i class="fa-solid fa-cart-shopping"></i>
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.first_name }}</span>
+                <!-- <span>DEBUG: {{ user.first_name }}</span> -->
+                <a href="/logout">Sign Out</a>
+            {% else %}
+                <a href="/signup">Sign Up</a>
+                <a href="/login">Login</a>
+            {% endif %}
         </div>
     </nav>
 </body>

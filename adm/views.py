@@ -1,59 +1,67 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib.auth.models import User
 from .form import FoodItemForm
 
 def user_login(request):
-    print(1)
+    print("Login attempt started")
     if request.method == 'POST':
-        print(2)
-        email= request.POST.get('email')
+        email = request.POST.get('email')
         password = request.POST.get('password')
-        print(email,password)
+        print(f"Attempting login with email: {email}")
+        
+        # Check if user exists
+        user_exists = User.objects.filter(username=email).exists()
+        print(f"User exists in database: {user_exists}")
+        
         # Authenticate user
         user = authenticate(username=email, password=password)
-        print(user)
+        print(f"Authentication result: {user}")
+        
         if user:
-            print(4)
+            print("User authenticated successfully")
             login(request, user)
 
             # Get the user's role
             user_role = UserRole.objects.filter(user=user).first()
-            print(user_role)
+            print(f"User role: {user_role}")
+            
             if user_role and user_role.role.role_name == "Seller":
-                return redirect('seller')  # Redirect to seller page
+                return redirect('seller')
             elif user_role and user_role.role.role_name == "Buyer":
-                return redirect('home')  # Redirect to buyer page
+                return redirect('home')
         else:
-            return render(request, 'login.html')
+            print("Authentication failed")
+            return render(request, 'login.html', {'error': 'Invalid email or password'})
 
     return render(request, 'login.html')
 
 
 def signup(request):
-    print(1)
     if request.method == 'POST':
-        print(2)
+        full_name = request.POST.get('full_name')
         email = request.POST.get('email')
         password = request.POST.get('password')
         selected_role = request.POST.get('role')
-        print(selected_role)
-        print(3)
+
+        print("Full name from form:", full_name)
+
         if User.objects.filter(username=email).exists():
             return render(request, 'signup.html')
-        print(4)
+
         # Create User
         user = User.objects.create_user(username=email, email=email, password=password)
-        print("user",user)
+        user.first_name = full_name
+        user.save()
+        print("Saved user first_name in DB:", user.first_name)
 
         # Assign Role
         role = Role.objects.get(role_name=selected_role)
-        print("role",role)
         UserRole.objects.create(user_id=user.id, role_id=role.id)
-        print(5)
 
-        return redirect('login')  # Redirect to login page after signup
+        return redirect('login')
 
     return render(request, 'signup.html')
 
@@ -69,13 +77,13 @@ def seller(request):
     return render(request,'seller.html',{'obj':obj})
     
 
+
 def addFoodItem(request):
     print(1)
     if request.method == "POST":
         form = FoodItemForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-
             return redirect('seller')  # Redirect to seller dashboard after adding
     else:
         form = FoodItemForm()
@@ -124,37 +132,49 @@ def cart(request):
     return render(request, "cart.html", {"cart_items": cart_items, "total_price": total_price})
 
 
-
 def addToCart(request, foodid):
-    food_item =FoodItems.objects.get(id=foodid)
-    cart_item= Cart.objects.create(user=request.user, food_item_id =foodid,quantity=1,price=food_item.price)
-    
-    if not cart_item:
-        cart_item.quantity += 1  # If item already exists, increase quantity
+    food_item = FoodItems.objects.get(id=foodid)
+    print(request.user.id)
+    cart_item = Cart.objects.filter(user=request.user.id, food_item=food_item)
+    print(cart_item)
+    if len(cart_item)==0:
+        cart_item= Cart.objects.create(user=request.user, food_item_id =foodid,quantity=1,price=food_item.price)
+    else:
+        cart_item = Cart.objects.filter(user=request.user.id, food_item=food_item).first()
+        print("cart",cart_item)
+        cart_item.quantity+=1 # If item already exists, increase quantity
         cart_item.save()
 
-    return redirect('home')  # Redirect to the cart page
+    return redirect('menu')  # Redirect to the cart page
 
-# def clearCart(request):
-#     cart_item= Cart.objects.all()
-#     if cart_item:
-#         cart_item.delete()
 
 def checkout(request):
-
     print(1)
     cart_items = Cart.objects.filter(user=request.user.id)
     total_price =sum(cart_item.quantity * cart_item.food_item.price for cart_item in cart_items)
     print(cart_items)
     print(total_price)
     if request.method == "POST":
-        print(2)
         payment_type = request.POST.get('payment_type')
+        name = request.POST.get('name')
+        address = request.POST.get('address')
+        phone = request.POST.get('phone')
+        print(2)
+        # Automatically set status based on payment type
+        if payment_type == "cash":
+            status = "pending"  # Pending for Cash on Delivery
+        elif payment_type == "card":
+            status = "processing"  
+        else:
+            status = "Delivered" 
+        print(payment_type)
         order = Order.objects.create(
             user=request.user,  # Ensure the user is authenticated
             total_price=total_price,
-            status="Pending",
-            payment_type="COD"
+            status=status,
+            payment_type=payment_type,
+            address=address,
+            phone_no=phone
         )
         print(3)
         # Add ordered items to the order
@@ -172,3 +192,7 @@ def checkout(request):
 
 def orderSuccess(request):
     return render(request, 'order.html')
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')

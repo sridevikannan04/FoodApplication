@@ -30,14 +30,29 @@
 
     <h3>Total Price: ${{ total_price }}</h3>
 
-    <form method="POST" action="{% url 'orderSuccess' %}">
+    <form method="POST" action="{% url 'checkout' %}">
         {% csrf_token %}
-        <label>Select Payment Method:</label><br>
-        <input type="radio" name="payment_type" value="Cash" required> Cash on Delivery<br>
-        <input type="radio" name="payment_type" value="Card"> Credit/Debit Card<br>
-        <input type="radio" name="payment_type" value="UPI"> UPI Payment<br><br>
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" class="form-control" required>
+        </div>
 
-        <button type="submit">Place Order</button>
+        <div class="form-group">
+            <label>Select Payment Method:</label><br>
+            <input type="radio" name="payment_type" value="Cash" required> Cash on Delivery<br>
+            <input type="radio" name="payment_type" value="Card"> Credit/Debit Card<br>
+            <input type="radio" name="payment_type" value="UPI"> UPI Payment<br><br>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Place Order</button>
     </form>
 </div>
 

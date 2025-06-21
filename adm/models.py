@@ -57,8 +57,8 @@ class Cart(models.Model):
 #    def __str__(self):
 #        return self.user
 
-    def get_total_price(self):
-        return self.quantity * self.food_item.price
+    # def get_total_price(self):
+    #     return self.quantity * self.food_item.price
    
     class Meta:
         db_table = "Cart"
@@ -69,6 +69,9 @@ class Order(models.Model):
     total_price = models.FloatField()
     status = models.CharField(max_length=50, default="Pending")  
     payment_type = models.CharField(max_length=50)
+    address=models.CharField(max_length=100, null=True)
+    phone_no = models.CharField(max_length=20)
+    name=models.CharField(max_length=50,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by=models.CharField()
     updated_by=models.CharField(null=True)
@@ -89,20 +92,20 @@ class OrderItem(models.Model):
     class Meta:
         db_table = "OrderItem"  
 
-class customer(models.Model):
-    username=models.CharField(max_length=50)
-    email=models.CharField(max_length=50)
-    address=models.CharField(max_length=100)
-    dob=models.CharField(max_length=50, null=True)
-    gender=models.CharField(max_length=50)
-    mobile=models.CharField() 
-    created_at = models.DateTimeField(auto_now_add=True)
-    created_by=models.CharField()
-    updated_by=models.CharField(null=True)
-    updated_date = models.DateTimeField(null = True)
+# class customer(models.Model):
+#     username=models.CharField(max_length=50)
+#     email=models.CharField(max_length=50)
+#     address=models.CharField(max_length=100) fffff                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+#     dob=models.CharField(max_length=50, null=True)
+#     gender=models.CharField(max_length=50)
+#     mobile=models.CharField() 
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     created_by=models.CharField()
+#     updated_by=models.CharField(null=True)
+#     updated_date = models.DateTimeField(null = True)
 
-    # def __str__(self):
-    #     return self.username
+#     # def __str__(self):
+#     #     return self.username
     
-    class Meta:
-        db_table = "customer"
+#     class Meta:
+#         db_table = "customer"
