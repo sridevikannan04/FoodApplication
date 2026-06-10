@@ -22,10 +22,13 @@
                 {% endif %}
             </ul>
         </div>
-        <div class="icons">
+        <div class="icons"> 
             {% if user.is_authenticated %}
-                <span>Welcome, {{ user.first_name }}</span>
-                <!-- <span>DEBUG: {{ user.first_name }}</span> -->
+                {% if user.first_name %}
+                    <span>Welcome, {{ user.first_name }}</span>
+                {% else %}
+                    <span>Welcome, {{ user.username }}</span>
+                {% endif %}
                 <a href="/logout">Sign Out</a>
             {% else %}
                 <a href="/signup">Sign Up</a>

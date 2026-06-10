@@ -11,7 +11,10 @@
 <body>
 
     <div class="container mt-5">
-        <h2>Your Cart</h2>
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+            <h2 class="mb-0">Your Cart</h2>
+            <a href="{% url 'menu' %}" class="btn btn-outline-secondary">← Back to Menu</a>
+        </div>
 
         {% if cart_items %}
             <table class="table">
@@ -21,6 +24,7 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,19 +32,37 @@
                         <tr>
                             <td>{{ item.food_item.name}}</td>
                             <td>₹{{ item.food_item.price}}</td>
-                            <td>{{ item.quantity }}</td>
+                            <td>
+                                <div class="d-flex align-items-center gap-1 flex-wrap">
+                                    <form action="{% url 'adjust_cart_quantity' item.id %}" method="post" class="d-inline m-0">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="decrement">
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary" title="Decrease">−</button>
+                                    </form>
+                                    <span class="px-2">{{ item.quantity }}</span>
+                                    <form action="{% url 'adjust_cart_quantity' item.id %}" method="post" class="d-inline m-0">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="increment">
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary" title="Increase">+</button>
+                                    </form>
+                                </div>
+                            </td>
                             <td>₹{{ item.get_total_price }}</td>
+                            <td class="text-end">
+                                <form action="{% url 'remove_cart_item' item.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Cancel</button>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
             <h3>Total Price: ₹{{ total_price }}</h3>
 
-            <!-- Button to Open Modal -->
             <a href="{% url 'checkout' %}" class="btn btn-primary">
                 Proceed to Checkout
             </a>
-            
 
         {% else %}
             <p>Your cart is empty.</p>

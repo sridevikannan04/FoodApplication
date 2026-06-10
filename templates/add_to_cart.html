@@ -1,0 +1,131 @@
+<style>
+    .cart-popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .cart-popup-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .cart-popup-box {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 400px;
+        margin: 16px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transform: translateY(-12px);
+        transition: transform 0.25s ease;
+    }
+
+    .cart-popup-overlay.is-open .cart-popup-box {
+        transform: translateY(0);
+    }
+
+    .cart-popup-icon {
+        font-size: 50px;
+        color: green;
+        margin-bottom: 10px;
+    }
+
+    .cart-popup-box h2 {
+        margin-bottom: 16px;
+        font-size: 24px;
+    }
+
+    .cart-popup-box .cart-popup-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s;
+    }
+
+    .cart-popup-box .cart-popup-btn:hover {
+        background: #218838;
+    }
+
+    .cart-popup-close {
+        margin-top: 12px;
+        background: transparent;
+        color: #666;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+</style>
+
+<div id="cartAddedPopup" class="cart-popup-overlay" aria-hidden="true" role="dialog" aria-labelledby="cartPopupTitle">
+    <div class="cart-popup-box">
+        <div class="cart-popup-icon" aria-hidden="true">✅</div>
+        <h2 id="cartPopupTitle">Added To Cart</h2>
+        <button type="button" class="cart-popup-btn" id="cartPopupContinue">Continue Order</button>
+        <div>
+            <button type="button" class="cart-popup-close" id="cartPopupDismiss">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    function openCartPopup() {
+        var el = document.getElementById('cartAddedPopup');
+        if (!el) return;
+        el.classList.add('is-open');
+        el.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeCartPopup() {
+        var el = document.getElementById('cartAddedPopup');
+        if (!el) return;
+        el.classList.remove('is-open');
+        el.setAttribute('aria-hidden', 'true');
+    }
+
+    function maybeOpenFromAddToCart() {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('cart_added') === '1') {
+            openCartPopup();
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState({}, '', window.location.pathname);
+            }
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', maybeOpenFromAddToCart);
+    } else {
+        maybeOpenFromAddToCart();
+    }
+
+    var overlay = document.getElementById('cartAddedPopup');
+    if (overlay) {
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) closeCartPopup();
+        });
+    }
+    var dismiss = document.getElementById('cartPopupDismiss');
+    if (dismiss) dismiss.addEventListener('click', closeCartPopup);
+    var cont = document.getElementById('cartPopupContinue');
+    if (cont) cont.addEventListener('click', closeCartPopup);
+})();
+</script>
